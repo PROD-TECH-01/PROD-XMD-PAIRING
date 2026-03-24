@@ -2,114 +2,318 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROD-XMD PAIRING 🏴‍☠️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PROD XMD TERMINAL 🏴‍☠️</title>
     <style>
+        /* --- RESET & MOBILE OPTIMIZATION --- */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
         body { 
-            background: #0d0d0d; 
-            color: #00ff41; 
+            background: #000; 
+            color: #0f0; 
             font-family: 'Courier New', Courier, monospace; 
             text-align: center; 
-            padding: 40px 20px;
+            padding: 10px;
             margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
         }
+
+        /* --- BACKGROUND layer 1: RDC FLAG (Very subtle) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, #007FFF 33.3%, #F7D117 33.3%, #F7D117 66.6%, #D11226 66.6%);
+            opacity: 0.03; /* Ultra subtil, juste une teinte de fond */
+            z-index: -2;
+        }
+
+        /* --- BACKGROUND layer 2: MATRIX SCANLINES --- */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36z8gAFWNhYfEfiM1AsgCMAirf0tLSDyALAC57DQo6p825AAAAAElFTkSuQmCC'); /* Scanlines */
+            opacity: 0.1;
+            z-index: -1;
+            animation: matrixScan 3s linear infinite;
+        }
+
+        @keyframes matrixScan { 0% { background-position: 0 0; } 100% { background-position: 0 100px; } }
+
+        /* --- CONTAINER HACKER STYLE --- */
         .container {
-            border: 2px solid #00ff41;
-            padding: 30px;
+            border: 1px solid #0f0;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), inset 0 0 5px rgba(0, 255, 0, 0.1);
+            max-width: 350px;
+            width: 95%;
+            margin: 0 auto;
+            position: relative;
+            background: rgba(0, 5, 0, 0.95);
+            animation: containerGlitchness 5s infinite;
+            overflow: hidden;
+        }
+
+        /* --- SHELBY IMAGE INTEGRATION --- */
+        .shelby-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://i.ibb.co/vzN44S8/thomas-shelby-hacker.png'); /* URL de ton image Thomas Shelby */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08; /* Très subtil à l'intérieur du container */
+            z-index: 0;
+            filter: grayscale(100%) contrast(150%);
+        }
+
+        /* --- SKULL & LOGO ANIMATION --- */
+        .header-icons { position: relative; z-index: 1; margin-bottom: 5px; }
+        .skull { font-size: 24px; animation: flicker 2s infinite; text-shadow: 0 0 8px #0f0; display: inline-block; margin: 0 10px; }
+        .flag-icon { font-size: 20px; display: inline-block; animation: flagPulse 3s infinite; }
+
+        @keyframes flagPulse { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.8; } }
+
+        h1 { 
+            font-size: 18px; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            margin: 5px 0;
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #0f0;
+            animation: typewrite 1.5s steps(20, end), glitchness 3s infinite;
+            overflow: hidden; white-space: nowrap; border-right: 2px solid #0f0;
             display: inline-block;
-            border-radius: 10px;
-            box-shadow: 0 0 20px #00ff4133;
-            max-width: 400px;
-            width: 90%;
+            position: relative; z-index: 1;
         }
-        h1 { font-size: 24px; text-transform: uppercase; letter-spacing: 3px; }
-        p { color: #888; font-size: 14px; }
+
+        p.subtitle { color: #8a8; font-size: 11px; margin-bottom: 15px; position: relative; z-index: 1; text-transform: uppercase; }
+
+        /* --- INPUT FIELD HACKER --- */
+        .input-group { position: relative; margin-bottom: 15px; z-index: 1; }
+        label { display: block; color: #0f0; font-size: 10px; margin-bottom: 5px; text-transform: uppercase; text-align: left; letter-spacing: 1px; }
         input { 
-            padding: 15px; 
-            background: #1a1a1a; 
-            border: 1px solid #00ff41; 
-            color: #00ff41; 
-            width: 80%; 
-            font-size: 18px;
+            padding: 12px; 
+            background: rgba(0, 0, 0, 0.7); 
+            border: 1px solid #0f0; 
+            color: #0f0; 
+            width: 100%; 
+            font-size: 16px;
             text-align: center;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            border-radius: 2px;
             outline: none;
+            box-shadow: inset 0 0 3px rgba(0, 255, 0, 0.2);
+            transition: 0.3s;
+            font-family: 'Courier New', Courier, monospace;
         }
-        button { 
-            padding: 15px 30px; 
-            background: #00ff41; 
+        input:focus { box-shadow: 0 0 8px #fff; border-color: #fff; color: #fff; background: rgba(0, 20, 0, 0.9); }
+
+        /* --- BUTTON HACKER WITH HOVER EFFET --- */
+        button#submitBtn { 
+            padding: 12px; 
+            background: #0f0; 
             color: #000; 
             cursor: pointer; 
-            border: none; 
+            border: 1px solid #0f0; 
             font-weight: bold; 
-            font-size: 16px;
-            border-radius: 5px;
-            transition: 0.3s;
+            font-size: 13px;
+            border-radius: 2px;
+            width: 100%;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+            position: relative; z-index: 1; overflow: hidden;
+            box-shadow: 0 0 8px #0f0;
+            letter-spacing: 1px;
         }
-        button:hover { background: #00cc33; transform: scale(1.05); }
+        button#submitBtn::after {
+            content: '';
+            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(45deg); transition: 0.6s;
+        }
+        button#submitBtn:hover { background: #fff; box-shadow: 0 0 15px #fff; border-color: #fff; color: #000; }
+        button#submitBtn:hover::after { left: 120%; }
+        button#submitBtn:active { transform: scale(0.97); }
+
+        /* --- DISPLAY CODE BOX --- */
         #displayCode { 
-            margin-top: 30px; 
+            margin-top: 20px; 
             font-size: 28px; 
             font-weight: bold; 
-            background: #222; 
-            padding: 15px;
-            border-radius: 5px;
+            background: rgba(0, 15, 0, 0.9); 
+            padding: 12px;
+            border-radius: 2px;
             display: none;
-            word-spacing: 10px;
+            border: 1px dashed #0f0;
+            color: #fff;
+            text-shadow: 0 0 12px #fff;
+            animation: fadeIn 0.6s ease;
+            position: relative; z-index: 1;
+            word-spacing: 5px;
         }
-        .footer { margin-top: 40px; color: #555; font-size: 12px; }
-        .footer b { color: #00ff41; }
+
+        /* --- COPY BUTTON --- */
+        #copyBtn {
+            margin-top: 10px;
+            padding: 8px;
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+            font-size: 11px;
+            display: none;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            position: relative; z-index: 1;
+            width: auto; margin-left: auto; margin-right: auto;
+            border-radius: 2px;
+            font-weight: bold;
+        }
+        #copyBtn:hover { background: #fff; color: #000; box-shadow: 0 0 10px #fff; }
+
+        /* --- FOOTER CYBER --- */
+        .footer { margin-top: auto; padding: 15px 0 5px 0; color: #555; font-size: 10px; position: relative; z-index: 1; letter-spacing: 1px; }
+        .footer b { color: #0f0; text-shadow: 0 0 3px #0f0; }
+        .flag-text { color: #fff; background: linear-gradient(90deg, #007FFF 33.3%, #F7D117 33.3%, #F7D117 66.6%, #D11226 66.6%); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; }
+
+        /* --- ANIMATIONS DEFINITIONS --- */
+        @keyframes flicker { 0%, 100% { opacity: 1; text-shadow: 0 0 8px #0f0; } 50% { opacity: 0.7; text-shadow: 0 0 2px #0f0; } 80% { opacity: 0.9; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes typewrite { from { width: 0; } to { width: 100%; } }
+        @keyframes glitchness { 0% { text-shadow: 1px 0 0 #fff, -1px 0 0 #0f0; } 5% { text-shadow: 2px 0 0 #fff, -2px 0 0 #0f0; } 10% { text-shadow: 1px 0 0 #fff, -1px 0 0 #0f0; } 100% { text-shadow: 1px 0 0 #fff, -1px 0 0 #0f0; } }
+        @keyframes containerGlitchness { 0% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } 1% { box-shadow: 0 0 15px #fff, -2px 0 0 #0f0; } 2% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } 100% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } }
+
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>🏴‍☠️ PROD-XMD 🏴‍☠️</h1>
-        <p>Générateur de Session ID sécurisé</p>
+        <div class="shelby-bg"></div>
+
+        <div class="header-icons">
+            <span class="flag-icon">🇨🇩</span>
+            <span class="skull">☠️</span>
+            <span class="flag-icon">🇨🇩</span>
+        </div>
+        <h1>PROD XMD</h1>
+        <p class="subtitle">[ SYSTÈME DE PAIRING SÉCURISÉ V2 ]</p>
         
-        <label for="number" style="display:block; margin-bottom:10px;">Numéro WhatsApp :</label>
-        <input type="text" id="number" value="243" placeholder="243XXXXXXXXX">
+        <div class="input-group">
+            <label for="number">Identifiant WhatsApp RDC (243...) :</label>
+            <input type="tel" id="number" value="243" placeholder="243XXXXXXXXX" autocomplete="off">
+        </div>
         
-        <br>
-        <button onclick="getCode()">OBTENIR LE CODE</button>
+        <button id="submitBtn" onclick="getCode()">INITIER LA CONNEXION</button>
 
         <div id="displayCode"></div>
+        <button id="copyBtn" onclick="copyCode()">COPIER LE CODE 📋</button>
     </div>
 
     <div class="footer">
-        Power by <b>Mr PROD 🇨🇩/Jivas Peter</b><br>
-        <i>© 2026 PROD-TECH-01. Tous droits réservés.</i>
+        Coded by <b>Mr PROD <span class="flag-text">🇨🇩</span>/Jivas Peter</b><br>
+        <i>[PROD-TECH-01 INFRASTRUCTURES] Tous droits réservés.</i>
     </div>
 
     <script>
+        // Le lien interne de ton Replit (Celui qui finit par 'replit.dev' ou 'replit.app')
+        const REPLIT_URL = "https://6901cfb9-4202-4400-974b-77a067148799-00-3kebqpxkpn4y6.kirk.replit.dev";
+
         async function getCode() {
-            const num = document.getElementById('number').value;
+            const num = document.getElementById('number').value.trim();
             const codeBox = document.getElementById('displayCode');
+            const submitBtn = document.getElementById('submitBtn');
+            const copyBtn = document.getElementById('copyBtn');
             
-            if(num.length < 10) {
-                alert("Veuillez entrer un numéro complet (ex: 243812345678)");
+            if(num.length < 11 || !num.startsWith('243')) {
+                alert("ERREUR : Numéro RDC invalide. Format attendu : 243XXXXXXXXX");
                 return;
             }
 
+            // Effets de chargement "Hacker"
+            submitBtn.innerText = "CRACKING IN PROGRESS...";
+            submitBtn.style.background = "#ff9900";
+            submitBtn.style.boxShadow = "0 0 10px #ff9900";
+            submitBtn.style.color = "#000";
+            submitBtn.disabled = true;
+
             codeBox.style.display = "block";
-            codeBox.innerText = "GÉNÉRATION EN COURS...";
-            codeBox.style.color = "#ff9900";
+            codeBox.innerText = "WAITING SERVER...";
+            codeBox.style.color = "#888";
+            codeBox.style.textShadow = "none";
+            copyBtn.style.display = "none";
 
             try {
-                // Remplace 'URL_DE_TON_SERVEUR_RENDER' par ton lien Render final
-                const response = await fetch(`/pair?number=${num}`);
+                // Requête vers la route '/pair' de ton serveur
+                const response = await fetch(`${REPLIT_URL}/pair?number=${num}`);
                 const data = await response.json();
                 
                 if(data.code) {
                     codeBox.innerText = data.code;
-                    codeBox.style.color = "#00ff41";
+                    codeBox.style.color = "#fff";
+                    codeBox.style.textShadow = "0 0 15px #fff, 0 0 25px #0f0";
+                    copyBtn.style.display = "inline-block";
+                    
+                    // Tentative d'auto-copie
+                    copyToClipboard(data.code);
+                    copyBtn.innerText = "CODE COPIÉ ! ✅";
+                    copyBtn.style.background = "#fff";
+                    copyBtn.style.color = "#000";
+                    
+                    setTimeout(() => { 
+                        copyBtn.innerText = "COPIER LE CODE 📋"; 
+                        copyBtn.style.background = "transparent";
+                        copyBtn.style.color = "#fff";
+                    }, 3000);
+
                 } else {
-                    codeBox.innerText = "ERREUR ❌";
+                    codeBox.innerText = "REQ ERROR ❌";
                 }
             } catch (err) {
-                codeBox.innerText = "SERVEUR HORS LIGNE ❌";
-                codeBox.style.color = "#ff0000";
+                codeBox.innerText = "SERVER DOWN ❌";
+                codeBox.style.color = "#f00";
+                codeBox.style.textShadow = "0 0 10px #f00";
+            } finally {
+                submitBtn.innerText = "INITIER LA CONNEXION";
+                submitBtn.style.background = "#0f0";
+                submitBtn.style.boxShadow = "0 0 8px #0f0";
+                submitBtn.disabled = false;
+            }
+        }
+
+        function copyCode() {
+            const code = document.getElementById('displayCode').innerText;
+            if(code && code.length === 8) {
+                copyToClipboard(code);
+                const copyBtn = document.getElementById('copyBtn');
+                copyBtn.innerText = "CODE COPIÉ ! ✅";
+                copyBtn.style.background = "#fff";
+                copyBtn.style.color = "#000";
+                setTimeout(() => { 
+                    copyBtn.innerText = "COPIER LE CODE 📋"; 
+                    copyBtn.style.background = "transparent";
+                    copyBtn.style.color = "#fff";
+                }, 2500);
+            }
+        }
+
+        // Fonction universelle de copie
+        function copyToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            } else {
+                let textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed"; textArea.style.left = "-9999px"; textArea.style.top = "0";
+                document.body.appendChild(textArea);
+                textArea.focus(); textArea.select();
+                return new Promise((res, rej) => {
+                    document.execCommand('copy') ? res() : rej();
+                    textArea.remove();
+                });
             }
         }
     </script>
