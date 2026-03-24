@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROD-XMD PAIRING 🏴‍☠️</title>
+    <style>
+        body { 
+            background: #0d0d0d; 
+            color: #00ff41; 
+            font-family: 'Courier New', Courier, monospace; 
+            text-align: center; 
+            padding: 40px 20px;
+            margin: 0;
+        }
+        .container {
+            border: 2px solid #00ff41;
+            padding: 30px;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #00ff4133;
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 { font-size: 24px; text-transform: uppercase; letter-spacing: 3px; }
+        p { color: #888; font-size: 14px; }
+        input { 
+            padding: 15px; 
+            background: #1a1a1a; 
+            border: 1px solid #00ff41; 
+            color: #00ff41; 
+            width: 80%; 
+            font-size: 18px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+        button { 
+            padding: 15px 30px; 
+            background: #00ff41; 
+            color: #000; 
+            cursor: pointer; 
+            border: none; 
+            font-weight: bold; 
+            font-size: 16px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        button:hover { background: #00cc33; transform: scale(1.05); }
+        #displayCode { 
+            margin-top: 30px; 
+            font-size: 28px; 
+            font-weight: bold; 
+            background: #222; 
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            word-spacing: 10px;
+        }
+        .footer { margin-top: 40px; color: #555; font-size: 12px; }
+        .footer b { color: #00ff41; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🏴‍☠️ PROD-XMD 🏴‍☠️</h1>
+        <p>Générateur de Session ID sécurisé</p>
+        
+        <label for="number" style="display:block; margin-bottom:10px;">Numéro WhatsApp :</label>
+        <input type="text" id="number" value="243" placeholder="243XXXXXXXXX">
+        
+        <br>
+        <button onclick="getCode()">OBTENIR LE CODE</button>
+
+        <div id="displayCode"></div>
+    </div>
+
+    <div class="footer">
+        Power by <b>Mr PROD 🇨🇩/Jivas Peter</b><br>
+        <i>© 2026 PROD-TECH-01. Tous droits réservés.</i>
+    </div>
+
+    <script>
+        async function getCode() {
+            const num = document.getElementById('number').value;
+            const codeBox = document.getElementById('displayCode');
+            
+            if(num.length < 10) {
+                alert("Veuillez entrer un numéro complet (ex: 243812345678)");
+                return;
+            }
+
+            codeBox.style.display = "block";
+            codeBox.innerText = "GÉNÉRATION EN COURS...";
+            codeBox.style.color = "#ff9900";
+
+            try {
+                // Remplace 'URL_DE_TON_SERVEUR_RENDER' par ton lien Render final
+                const response = await fetch(`/pair?number=${num}`);
+                const data = await response.json();
+                
+                if(data.code) {
+                    codeBox.innerText = data.code;
+                    codeBox.style.color = "#00ff41";
+                } else {
+                    codeBox.innerText = "ERREUR ❌";
+                }
+            } catch (err) {
+                codeBox.innerText = "SERVEUR HORS LIGNE ❌";
+                codeBox.style.color = "#ff0000";
+            }
+        }
+    </script>
+</body>
+</html>
