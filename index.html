@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PROD XMD TERMINAL 🏴‍☠️</title>
+    <title>PROD XMD ULTRA TERMINAL 🏴‍☠️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         /* --- RESET & MOBILE OPTIMIZATION --- */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
         body { 
             background: #000; 
             color: #0f0; 
-            font-family: 'Courier New', Courier, monospace; 
+            font-family: 'Fira Code', monospace; 
             text-align: center; 
             padding: 10px;
             margin: 0;
@@ -22,205 +25,271 @@
             position: relative;
         }
 
-        /* --- BACKGROUND layer 1: RDC FLAG (Very subtle) --- */
-        body::before {
-            content: "";
+        /* --- BACKGROUND layer 1: ANIMATED THOMAS SHELBY (Subtle Glitch) --- */
+        .shelby-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, #007FFF 33.3%, #F7D117 33.3%, #F7D117 66.6%, #D11226 66.6%);
-            opacity: 0.03; /* Ultra subtil, juste une teinte de fond */
-            z-index: -2;
-        }
-
-        /* --- BACKGROUND layer 2: MATRIX SCANLINES --- */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36z8gAFWNhYfEfiM1AsgCMAirf0tLSDyALAC57DQo6p825AAAAAElFTkSuQmCC'); /* Scanlines */
-            opacity: 0.1;
-            z-index: -1;
-            animation: matrixScan 3s linear infinite;
-        }
-
-        @keyframes matrixScan { 0% { background-position: 0 0; } 100% { background-position: 0 100px; } }
-
-        /* --- CONTAINER HACKER STYLE --- */
-        .container {
-            border: 1px solid #0f0;
-            padding: 20px;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), inset 0 0 5px rgba(0, 255, 0, 0.1);
-            max-width: 350px;
-            width: 95%;
-            margin: 0 auto;
-            position: relative;
-            background: rgba(0, 5, 0, 0.95);
-            animation: containerGlitchness 5s infinite;
-            overflow: hidden;
-        }
-
-        /* --- SHELBY IMAGE INTEGRATION --- */
-        .shelby-bg {
-            position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://i.ibb.co/vzN44S8/thomas-shelby-hacker.png'); /* URL de ton image Thomas Shelby */
             background-size: cover;
             background-position: center;
-            opacity: 0.08; /* Très subtil à l'intérieur du container */
-            z-index: 0;
+            opacity: 0.04; /* Très subtil, presque invisible */
+            z-index: -3;
             filter: grayscale(100%) contrast(150%);
+            animation: shelbyGlitch 10s linear infinite;
         }
 
-        /* --- SKULL & LOGO ANIMATION --- */
-        .header-icons { position: relative; z-index: 1; margin-bottom: 5px; }
-        .skull { font-size: 24px; animation: flicker 2s infinite; text-shadow: 0 0 8px #0f0; display: inline-block; margin: 0 10px; }
-        .flag-icon { font-size: 20px; display: inline-block; animation: flagPulse 3s infinite; }
+        /* --- BACKGROUND layer 2: RDC FLAG GRADIENT --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(0, 127, 255, 0.1) 0%, rgba(247, 209, 23, 0.05) 50%, rgba(209, 18, 38, 0.1) 100%);
+            opacity: 0.2;
+            z-index: -2;
+            animation: rdcPulse 5s ease-in-out infinite;
+        }
 
-        @keyframes flagPulse { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.8; } }
+        /* --- BACKGROUND layer 3: MATRIX DIGITAL RAIN (CSS Only) --- */
+        .matrix-rain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            color: rgba(0, 255, 0, 0.15);
+            font-size: 10px;
+            user-select: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .matrix-column { float: left; width: 2.5%; animation: matrixDrop 5s linear infinite; opacity: 0; }
+        .matrix-column:nth-child(odd) { animation-duration: 7s; animation-delay: 2s; }
+        .matrix-column:nth-child(3n) { animation-duration: 4s; animation-delay: 1s; }
+
+        /* --- CONTAINER BLACK HAT STYLE --- */
+        .container {
+            border: 2px solid #0f0;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), inset 0 0 15px rgba(0, 255, 0, 0.2);
+            max-width: 380px;
+            width: 95%;
+            margin: 0 auto;
+            position: relative;
+            background: rgba(0, 8, 0, 0.98);
+            animation: containerGlitch 8s infinite;
+            overflow: hidden;
+        }
+
+        /* --- HEADER & LOGO --- */
+        .header-icons { position: relative; z-index: 1; margin-bottom: 10px; display: flex; justify-content: center; align-items: center; gap: 15px; }
+        .flag-icon { font-size: 28px; animation: flagStatus 4s infinite; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
+        .skull { font-size: 35px; color: #fff; text-shadow: 0 0 15px #fff, 0 0 30px #0f0; animation: skullFlicker 1.5s infinite; }
 
         h1 { 
-            font-size: 18px; 
+            font-size: 24px; 
             text-transform: uppercase; 
-            letter-spacing: 3px; 
-            margin: 5px 0;
+            letter-spacing: 5px; 
+            margin: 10px 0;
             color: #fff;
-            text-shadow: 0 0 5px #fff, 0 0 10px #0f0;
-            animation: typewrite 1.5s steps(20, end), glitchness 3s infinite;
-            overflow: hidden; white-space: nowrap; border-right: 2px solid #0f0;
+            text-shadow: 0 0 10px #fff, 0 0 20px #0f0, 0 0 40px #0f0;
+            animation: typewrite 2s steps(20, end), titleGlitch 5s infinite;
+            overflow: hidden; white-space: nowrap; border-right: 3px solid #0f0;
             display: inline-block;
             position: relative; z-index: 1;
         }
 
-        p.subtitle { color: #8a8; font-size: 11px; margin-bottom: 15px; position: relative; z-index: 1; text-transform: uppercase; }
+        p.subtitle { color: #8a8; font-size: 12px; margin-bottom: 25px; position: relative; z-index: 1; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- INPUT FIELD HACKER --- */
-        .input-group { position: relative; margin-bottom: 15px; z-index: 1; }
-        label { display: block; color: #0f0; font-size: 10px; margin-bottom: 5px; text-transform: uppercase; text-align: left; letter-spacing: 1px; }
+        /* --- INPUT FIELD HACKER V2 --- */
+        .input-group { position: relative; margin-bottom: 20px; z-index: 1; }
+        label { display: block; color: #0f0; font-size: 11px; margin-bottom: 8px; text-transform: uppercase; text-align: left; letter-spacing: 1.5px; font-weight: bold;}
+        .input-wrapper { position: relative; }
+        .input-wrapper::before { content: ">_"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #0f0; font-weight: bold; font-size: 16px; }
         input { 
-            padding: 12px; 
-            background: rgba(0, 0, 0, 0.7); 
-            border: 1px solid #0f0; 
-            color: #0f0; 
+            padding: 16px 16px 16px 40px; 
+            background: rgba(0, 0, 0, 0.8); 
+            border: 2px solid #0f0; 
+            color: #fff; 
             width: 100%; 
-            font-size: 16px;
-            text-align: center;
-            border-radius: 2px;
+            font-size: 18px;
+            text-align: left;
+            border-radius: 4px;
             outline: none;
-            box-shadow: inset 0 0 3px rgba(0, 255, 0, 0.2);
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.3);
             transition: 0.3s;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Fira Code', monospace;
+            letter-spacing: 1px;
         }
-        input:focus { box-shadow: 0 0 8px #fff; border-color: #fff; color: #fff; background: rgba(0, 20, 0, 0.9); }
+        input:focus { box-shadow: 0 0 15px #fff, inset 0 0 10px rgba(255,255,255,0.2); border-color: #fff; color: #fff; background: rgba(0, 25, 0, 0.95); }
 
-        /* --- BUTTON HACKER WITH HOVER EFFET --- */
+        /* --- BUTTON HACKER ULTRA --- */
         button#submitBtn { 
-            padding: 12px; 
-            background: #0f0; 
+            padding: 16px; 
+            background: linear-gradient(135deg, #0f0 0%, #0a0 100%);
             color: #000; 
             cursor: pointer; 
-            border: 1px solid #0f0; 
-            font-weight: bold; 
-            font-size: 13px;
-            border-radius: 2px;
+            border: 2px solid #0f0; 
+            font-weight: 700; 
+            font-size: 15px;
+            border-radius: 4px;
             width: 100%;
             text-transform: uppercase;
-            transition: 0.3s ease;
+            transition: 0.4s ease;
             position: relative; z-index: 1; overflow: hidden;
-            box-shadow: 0 0 8px #0f0;
-            letter-spacing: 1px;
+            box-shadow: 0 0 15px #0f0;
+            letter-spacing: 2px;
         }
         button#submitBtn::after {
             content: '';
-            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: rgba(255,255,255,0.3);
-            transform: rotate(45deg); transition: 0.6s;
+            position: absolute; top: -50%; left: -150%; width: 300%; height: 300%;
+            background: rgba(255,255,255,0.5);
+            transform: rotate(45deg); transition: 0.8s;
         }
-        button#submitBtn:hover { background: #fff; box-shadow: 0 0 15px #fff; border-color: #fff; color: #000; }
-        button#submitBtn:hover::after { left: 120%; }
-        button#submitBtn:active { transform: scale(0.97); }
+        button#submitBtn:hover { background: #fff; box-shadow: 0 0 25px #fff; border-color: #fff; color: #000; }
+        button#submitBtn:hover::after { left: 150%; }
+        button#submitBtn:active { transform: scale(0.96); box-shadow: 0 0 10px #fff; }
 
-        /* --- DISPLAY CODE BOX --- */
+        /* --- DISPLAY CODE BOX V2 --- */
         #displayCode { 
-            margin-top: 20px; 
-            font-size: 28px; 
-            font-weight: bold; 
-            background: rgba(0, 15, 0, 0.9); 
-            padding: 12px;
-            border-radius: 2px;
+            margin-top: 30px; 
+            font-size: 35px; 
+            font-weight: 700; 
+            background: rgba(0, 25, 0, 0.95); 
+            padding: 20px;
+            border-radius: 4px;
             display: none;
-            border: 1px dashed #0f0;
+            border: 2px dashed #fff;
             color: #fff;
-            text-shadow: 0 0 12px #fff;
-            animation: fadeIn 0.6s ease;
+            text-shadow: 0 0 15px #fff, 0 0 25px #0f0;
+            animation: codeSpawn 0.8s ease-out;
             position: relative; z-index: 1;
-            word-spacing: 5px;
+            word-spacing: 8px;
+            letter-spacing: 2px;
         }
 
-        /* --- COPY BUTTON --- */
+        /* --- COPY BUTTON V2 --- */
         #copyBtn {
-            margin-top: 10px;
-            padding: 8px;
-            background: transparent;
-            color: #fff;
-            border: 1px solid #fff;
-            font-size: 11px;
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            font-size: 13px;
             display: none;
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             text-transform: uppercase;
             position: relative; z-index: 1;
             width: auto; margin-left: auto; margin-right: auto;
-            border-radius: 2px;
-            font-weight: bold;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
-        #copyBtn:hover { background: #fff; color: #000; box-shadow: 0 0 10px #fff; }
+        #copyBtn:hover { background: #0f0; color: #000; box-shadow: 0 0 20px #0f0; border-color: #0f0; }
+
+        /* --- SOCIAL LINKS PANEL --- */
+        .social-panel {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            position: relative; z-index: 1;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        .social-icon {
+            font-size: 28px;
+            color: #0f0;
+            transition: 0.4s;
+            text-shadow: 0 0 5px #0f0;
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            color: #fff;
+            transform: scale(1.2) translateY(-5px);
+            text-shadow: 0 0 15px #fff, 0 0 25px #0f0;
+        }
+        .social-icon.whatsapp-group { color: #fff; text-shadow: 0 0 5px #fff; }
+        .social-icon.whatsapp-group:hover { color: #0f0; text-shadow: 0 0 15px #0f0; }
 
         /* --- FOOTER CYBER --- */
-        .footer { margin-top: auto; padding: 15px 0 5px 0; color: #555; font-size: 10px; position: relative; z-index: 1; letter-spacing: 1px; }
-        .footer b { color: #0f0; text-shadow: 0 0 3px #0f0; }
+        .footer { margin-top: auto; padding: 20px 0 10px 0; color: #666; font-size: 11px; position: relative; z-index: 1; letter-spacing: 1px; line-height: 1.5; }
+        .footer b { color: #fff; text-shadow: 0 0 5px #fff; animation: footerFlicker 3s infinite; }
         .flag-text { color: #fff; background: linear-gradient(90deg, #007FFF 33.3%, #F7D117 33.3%, #F7D117 66.6%, #D11226 66.6%); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; }
 
         /* --- ANIMATIONS DEFINITIONS --- */
-        @keyframes flicker { 0%, 100% { opacity: 1; text-shadow: 0 0 8px #0f0; } 50% { opacity: 0.7; text-shadow: 0 0 2px #0f0; } 80% { opacity: 0.9; } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes skullFlicker { 0%, 100% { opacity: 1; text-shadow: 0 0 15px #fff, 0 0 30px #0f0; } 50% { opacity: 0.8; text-shadow: 0 0 5px #fff; } 80% { opacity: 0.9; } }
+        @keyframes shelbyGlitch { 0% { transform: translate(0,0) scale(1); } 1% { transform: translate(-2px, 1px) scale(1.01); filter: grayscale(100%) contrast(200%); } 2% { transform: translate(0,0) scale(1); filter: grayscale(100%) contrast(150%); } 100% { transform: translate(0,0) scale(1); } }
+        @keyframes matrixDrop { 0% { transform: translateY(-100%); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(100vh); opacity: 0; } }
+        @keyframes rdcPulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.3; } }
+        @keyframes flagStatus { 0%, 100% { transform: rotate(-5deg) scale(1); opacity: 0.9; } 50% { transform: rotate(5deg) scale(1.1); opacity: 1; } }
+        @keyframes codeSpawn { from { opacity: 0; transform: scale(0.8) translateY(20px); filter: blur(5px); } to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); } }
         @keyframes typewrite { from { width: 0; } to { width: 100%; } }
-        @keyframes glitchness { 0% { text-shadow: 1px 0 0 #fff, -1px 0 0 #0f0; } 5% { text-shadow: 2px 0 0 #fff, -2px 0 0 #0f0; } 10% { text-shadow: 1px 0 0 #fff, -1px 0 0 #0f0; } 100% { text-shadow: 1px 0 0 #fff, -1px 0 0 #0f0; } }
-        @keyframes containerGlitchness { 0% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } 1% { box-shadow: 0 0 15px #fff, -2px 0 0 #0f0; } 2% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } 100% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } }
+        @keyframes titleGlitch { 0% { text-shadow: 1px 0 0 #fff, -1px 0 0 #0f0; } 2% { text-shadow: 3px 0 0 #fff, -3px 0 0 #0f0; color: #0f0; } 4% { text-shadow: 1px 0 0 #fff, -1px 0 0 #0f0; color: #fff; } 100% { text-shadow: 1px 0 0 #fff, -1px 0 0 #0f0; } }
+        @keyframes containerGlitch { 0% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); border-color: #0f0; } 1% { box-shadow: 0 0 30px #fff, -3px 0 0 #0f0; border-color: #fff; } 2% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); border-color: #0f0; } 100% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); border-color: #0f0; } }
+        @keyframes footerFlicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } 70% { opacity: 0.8; } }
 
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="shelby-bg"></div>
+    <div class="shelby-overlay"></div>
 
+    <div class="matrix-rain" id="matrixRain"></div>
+
+    <div class="container">
         <div class="header-icons">
             <span class="flag-icon">🇨🇩</span>
             <span class="skull">☠️</span>
             <span class="flag-icon">🇨🇩</span>
         </div>
         <h1>PROD XMD</h1>
-        <p class="subtitle">[ SYSTÈME DE PAIRING SÉCURISÉ V2 ]</p>
+        <p class="subtitle">[ TERMINAL D'AUTENTIFICATION HACKER V3 ]</p>
         
         <div class="input-group">
             <label for="number">Identifiant WhatsApp RDC (243...) :</label>
-            <input type="tel" id="number" value="243" placeholder="243XXXXXXXXX" autocomplete="off">
+            <div class="input-wrapper">
+                <input type="tel" id="number" value="" placeholder="243XXXXXXXXX" autocomplete="off">
+            </div>
         </div>
         
-        <button id="submitBtn" onclick="getCode()">INITIER LA CONNEXION</button>
+        <button id="submitBtn" onclick="getCode()">OBTENIR LE CODE</button>
 
         <div id="displayCode"></div>
         <button id="copyBtn" onclick="copyCode()">COPIER LE CODE 📋</button>
+
+        <div class="social-panel">
+            <a href="https://whatsapp.com/channel/0029Vb2APDa002TAzna42b3s" target="_blank" class="social-icon whatsapp-channel" title="Rejoindre la Chaîne">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://chat.whatsapp.com/HC5POVoUUFQ9Y9CntPiqSx?mode=gi_t" target="_blank" class="social-icon whatsapp-group" title="Rejoindre le Groupe">
+                <i class="fab fa-whatsapp-square"></i>
+            </a>
+            <a href="VOTRE_LIEN_DEPOT_GITHUB" target="_blank" class="social-icon github-repo" title="Voir le Code Source">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
     </div>
 
     <div class="footer">
-        Coded by <b>Mr PROD <span class="flag-text">🇨🇩</span>/Jivas Peter</b><br>
-        <i>[PROD-TECH-01 INFRASTRUCTURES] Tous droits réservés.</i>
+        Power by <b>Mr PROD <span class="flag-text">🇨🇩</span></b><br>
+        <i>[PROD-TECH-01 CORE INFRASTRUCTURES] Tous droits réservés.</i>
     </div>
 
     <script>
         // Le lien interne de ton Replit (Celui qui finit par 'replit.dev' ou 'replit.app')
         const REPLIT_URL = "https://6901cfb9-4202-4400-974b-77a067148799-00-3kebqpxkpn4y6.kirk.replit.dev";
+
+        // Génération de la Matrix Rain (CSS Only)
+        const matrixContainer = document.getElementById('matrixRain');
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%";
+        for (let i = 0; i < 40; i++) {
+            let column = document.createElement('div');
+            column.className = 'matrix-column';
+            let content = "";
+            for (let j = 0; j < 50; j++) {
+                content += characters.charAt(Math.floor(Math.random() * characters.length)) + "<br>";
+            }
+            column.innerHTML = content;
+            matrixContainer.appendChild(column);
+        }
 
         async function getCode() {
             const num = document.getElementById('number').value.trim();
@@ -228,22 +297,23 @@
             const submitBtn = document.getElementById('submitBtn');
             const copyBtn = document.getElementById('copyBtn');
             
-            if(num.length < 11 || !num.startsWith('243')) {
-                alert("ERREUR : Numéro RDC invalide. Format attendu : 243XXXXXXXXX");
+            if(num.length < 11 || !num.startsWith('')) {
+                alert("ERREUR CRITIQUE : Identifiant RDC invalide. Format attendu : 243XXXXXXXXX");
                 return;
             }
 
-            // Effets de chargement "Hacker"
-            submitBtn.innerText = "CRACKING IN PROGRESS...";
-            submitBtn.style.background = "#ff9900";
-            submitBtn.style.boxShadow = "0 0 10px #ff9900";
+            // Effets de chargement "Hacker Ultra"
+            submitBtn.innerText = "BYPASSING SECURITY...";
+            submitBtn.style.background = "#fff";
+            submitBtn.style.boxShadow = "0 0 20px #fff";
             submitBtn.style.color = "#000";
             submitBtn.disabled = true;
 
             codeBox.style.display = "block";
-            codeBox.innerText = "WAITING SERVER...";
+            codeBox.innerText = "INJECTING EXPLOIT...";
             codeBox.style.color = "#888";
             codeBox.style.textShadow = "none";
+            codeBox.style.borderColor = "#888";
             copyBtn.style.display = "none";
 
             try {
@@ -254,32 +324,39 @@
                 if(data.code) {
                     codeBox.innerText = data.code;
                     codeBox.style.color = "#fff";
-                    codeBox.style.textShadow = "0 0 15px #fff, 0 0 25px #0f0";
+                    codeBox.style.borderColor = "#fff";
+                    codeBox.style.textShadow = "0 0 15px #fff, 0 0 30px #0f0";
                     copyBtn.style.display = "inline-block";
                     
                     // Tentative d'auto-copie
                     copyToClipboard(data.code);
                     copyBtn.innerText = "CODE COPIÉ ! ✅";
-                    copyBtn.style.background = "#fff";
+                    copyBtn.style.background = "#0f0";
                     copyBtn.style.color = "#000";
+                    copyBtn.style.borderColor = "#0f0";
                     
                     setTimeout(() => { 
                         copyBtn.innerText = "COPIER LE CODE 📋"; 
-                        copyBtn.style.background = "transparent";
-                        copyBtn.style.color = "#fff";
-                    }, 3000);
+                        copyBtn.style.background = "#fff";
+                        copyBtn.style.color = "#000";
+                        copyBtn.style.borderColor = "#fff";
+                    }, 4000);
 
                 } else {
-                    codeBox.innerText = "REQ ERROR ❌";
+                    codeBox.innerText = "AUTH FAILED ❌";
+                    codeBox.style.color = "#f00";
+                    codeBox.style.borderColor = "#f00";
                 }
             } catch (err) {
                 codeBox.innerText = "SERVER DOWN ❌";
                 codeBox.style.color = "#f00";
-                codeBox.style.textShadow = "0 0 10px #f00";
+                codeBox.style.borderColor = "#f00";
+                codeBox.style.textShadow = "0 0 15px #f00";
             } finally {
-                submitBtn.innerText = "INITIER LA CONNEXION";
-                submitBtn.style.background = "#0f0";
-                submitBtn.style.boxShadow = "0 0 8px #0f0";
+                submitBtn.innerText = "OBTENIR LE CODE";
+                submitBtn.style.background = "linear-gradient(135deg, #0f0 0%, #0a0 100%)";
+                submitBtn.style.boxShadow = "0 0 15px #0f0";
+                submitBtn.style.color = "#000";
                 submitBtn.disabled = false;
             }
         }
@@ -290,13 +367,15 @@
                 copyToClipboard(code);
                 const copyBtn = document.getElementById('copyBtn');
                 copyBtn.innerText = "CODE COPIÉ ! ✅";
-                copyBtn.style.background = "#fff";
+                copyBtn.style.background = "#0f0";
                 copyBtn.style.color = "#000";
+                copyBtn.style.borderColor = "#0f0";
                 setTimeout(() => { 
                     copyBtn.innerText = "COPIER LE CODE 📋"; 
-                    copyBtn.style.background = "transparent";
-                    copyBtn.style.color = "#fff";
-                }, 2500);
+                    copyBtn.style.background = "#fff";
+                    copyBtn.style.color = "#000";
+                    copyBtn.style.borderColor = "#fff";
+                }, 3000);
             }
         }
 
